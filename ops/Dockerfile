@@ -9,8 +9,6 @@ ARG uid=1000
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-    nodejs \
-    npm \
     libzip-dev \
     zip \
     unzip \
@@ -19,7 +17,8 @@ RUN apk update && \
     freetype-dev \
     icu-dev \
     g++ \
-    lame && \
+    lame \
+    netcat-openbsd && \ 
     rm -rf /var/cache/apk/*
 
 # Instale as extensões PHP necessárias

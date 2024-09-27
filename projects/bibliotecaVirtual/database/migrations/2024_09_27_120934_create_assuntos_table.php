@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('assunto', function (Blueprint $table) {
             $table->integer('codas')->unsigned()->autoIncrement()->primary(); // chave primária autoincrementada
-            $table->string('descricao'); // descrição do assunto
-            $table->timestamps(); // timestamps para created_at e updated_at
+            $table->string('descricao', 20)->unique();;
+            $table->timestamps();
         });
     }
 

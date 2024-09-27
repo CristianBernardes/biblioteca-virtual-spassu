@@ -7,8 +7,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Livro;
-use App\Models\CompraLivro;
-use App\Models\Compra;
 
 class ProcessarCompraTest extends TestCase
 {

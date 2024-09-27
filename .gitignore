@@ -1,0 +1,6 @@
+/.vite
+/.docker
+/.fleet
+/.idea
+/.vscode
+.DS_Store

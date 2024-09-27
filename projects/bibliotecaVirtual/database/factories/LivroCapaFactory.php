@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Assunto;
+use App\Models\Livro;
+use App\Models\LivroCapa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AssuntoFactory extends Factory
+class LivroCapaFactory extends Factory
 {
-    protected $model = Assunto::class;
+    protected $model = LivroCapa::class;
 
     /**
      * Define o estado padrão do model.
@@ -15,7 +16,8 @@ class AssuntoFactory extends Factory
     public function definition()
     {
         return [
-            'descricao' => $this->faker->unique()->word(),  // Gera uma descrição única para o assunto
+            'livro_codl' => Livro::factory(),  // Associa a capa a um livro
+            'caminho_imagem' => $this->faker->imageUrl(),  // Gera um URL de imagem fake
             'created_at' => now(),
             'updated_at' => now(),
         ];

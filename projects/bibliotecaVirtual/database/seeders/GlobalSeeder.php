@@ -62,7 +62,7 @@ class GlobalSeeder extends Seeder
 
         // Simulando a associação dos livros comprados com suas quantidades
         $livrosComprados = $livros->random(3)->map(function ($livro) {
-            return ['livro_id' => $livro->codl, 'quantidade' => 1];
+            return ['livro_id' => $livro->codl, 'quantidade' => rand(1, 6)];
         })->toJson();
 
         // Chamando a procedure para registrar a compra e calcular o valor

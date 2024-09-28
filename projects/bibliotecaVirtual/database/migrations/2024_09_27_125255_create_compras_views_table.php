@@ -16,7 +16,12 @@ return new class extends Migration {
                 SELECT
                     users.name AS usuario,
                     compras.codcompra AS codigo_compra,
-                    GROUP_CONCAT(livro.titulo SEPARATOR ', ') AS livros_comprados,
+                    JSON_ARRAYAGG(
+                        JSON_OBJECT(
+                            'nome_livro', livro.titulo,
+                            'quantidade', compra_livros.quantidade
+                        )
+                    ) AS livros_comprados,
                     compras.valor_compra AS valor_total_livros,
                     compras.desconto AS desconto,
                     (compras.valor_compra - (compras.valor_compra * compras.desconto / 100)) AS valor_total_pago,

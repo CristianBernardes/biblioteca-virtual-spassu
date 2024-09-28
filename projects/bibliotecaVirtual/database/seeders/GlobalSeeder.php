@@ -61,7 +61,7 @@ class GlobalSeeder extends Seeder
         $desconto = rand(0, 15);
 
         // Simular a associação dos livros comprados com quantidades
-        $livrosComprados = $livros->random(3)->map(function ($livro) {
+        $livrosComprados = $livros->random(6)->map(function ($livro) {
             return ['livro_id' => $livro->codl, 'quantidade' => rand(1, 6)];
         })->toJson();
 

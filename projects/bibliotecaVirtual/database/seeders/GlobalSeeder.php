@@ -44,14 +44,14 @@ class GlobalSeeder extends Seeder
 
         // Criar dois usuários conhecidos
         User::create([
-            'name' => 'Admin User',
+            'name' => 'Usuário Administrador',
             'email' => 'admin@example.com',
             'password' => bcrypt('A1234567'),
             'is_admin' => true
         ]);
 
         $user = User::create([
-            'name' => 'Regular User',
+            'name' => 'Usuário Comum',
             'email' => 'user@example.com',
             'password' => bcrypt('B9876543'),
             'is_admin' => false

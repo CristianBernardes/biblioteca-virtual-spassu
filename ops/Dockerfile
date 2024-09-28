@@ -18,7 +18,9 @@ RUN apk update && \
     icu-dev \
     g++ \
     lame \
-    netcat-openbsd && \ 
+    netcat-openbsd \
+    nodejs \
+    npm && \ 
     rm -rf /var/cache/apk/*
 
 # Instale as extensões PHP necessárias
@@ -64,6 +66,10 @@ COPY /../../../../confs/init_backend.sh /usr/local/bin/init_backend.sh
 # Torna o script executável
 RUN chmod +x /usr/local/bin/init_backend.sh
 
+# Instala o Node.js e npm globalmente
+RUN npm install -g npm@latest
+
+# Alterar para o usuário especificado
 USER $user
 
 # Define o comando principal do contêiner para executar o script de inicialização

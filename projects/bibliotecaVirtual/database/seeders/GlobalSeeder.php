@@ -17,32 +17,32 @@ class GlobalSeeder extends Seeder
      */
     public function run(): void
     {
-        // Criando 5 autores
+        // Criar 5 autores
         $autores = Autor::factory()->count(5)->create();
 
-        // Criando 40 assuntos
+        // Criar 40 assuntos
         $assuntos = Assunto::factory()->count(40)->create();
 
-        // Criando 10 livros sem capa
+        // Criar 10 livros
         $livros = Livro::factory()->count(10)->create();
 
-        // Associando os autores aos livros (muitos-para-muitos) com timestamps
+        // Associar autores aos livros (muitos-para-muitos)
         $livros->each(function ($livro) use ($autores) {
             $livro->autores()->attach(
-                $autores->random(2)->pluck('codau')->toArray(),
-                ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+                $autores->random(2)->pluck('codau')->toArray(), // Seleciona 2 autores aleatórios
+                ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()] // Adiciona timestamps
             );
         });
 
-        // Associando os assuntos aos livros (muitos-para-muitos) com timestamps
+        // Associar assuntos aos livros (muitos-para-muitos)
         $livros->each(function ($livro) use ($assuntos) {
             $livro->assuntos()->attach(
-                $assuntos->random(3)->pluck('codas')->toArray(),
-                ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
+                $assuntos->random(3)->pluck('codas')->toArray(), // Seleciona 3 assuntos aleatórios
+                ['created_at' => Carbon::now(), 'updated_at' => Carbon::now()] // Adiciona timestamps
             );
         });
 
-        // Criando dois usuários com e-mails e senhas conhecidos
+        // Criar dois usuários conhecidos
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -57,15 +57,15 @@ class GlobalSeeder extends Seeder
             'is_admin' => false
         ]);
 
-        // Gerando um desconto aleatório entre 0 e 15
+        // Gerar um desconto aleatório entre 0 e 15
         $desconto = rand(0, 15);
 
-        // Simulando a associação dos livros comprados com suas quantidades
+        // Simular a associação dos livros comprados com quantidades
         $livrosComprados = $livros->random(3)->map(function ($livro) {
             return ['livro_id' => $livro->codl, 'quantidade' => rand(1, 6)];
         })->toJson();
 
-        // Chamando a procedure para registrar a compra e calcular o valor
+        // Chamar a procedure para registrar a compra e calcular o valor
         DB::select('CALL ProcessarCompra(?, ?, ?, @compraId)', [$user->id, $desconto, $livrosComprados]);
     }
 }

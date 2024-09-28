@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <!-- Campo de pesquisa -->
+    <!-- Linha de pesquisa e link para o carrinho -->
     <div class="row justify-content-center mb-4">
         <div class="col-md-6">
             <input
@@ -9,6 +9,15 @@
                 class="form-control"
             />
         </div>
+
+        <!-- Exibir o link para o carrinho se houver itens no carrinho -->
+        @if($itensCarrinho > 0)
+            <div class="col-md-2 text-end">
+                <a href="" class="btn btn-success">
+                    Ir para o Carrinho ({{ $itensCarrinho }})
+                </a>
+            </div>
+        @endif
     </div>
 
     <!-- Lista de livros -->
@@ -28,6 +37,13 @@
                         <p class="card-text">Editora: {{ $livro->editora }}</p>
                         <p class="card-text">Ano de Publicação: {{ $livro->ano_publicacao }}</p>
                         <p class="card-text">Valor: {{ formatarMoeda($livro->valor) }}</p>
+
+                        <!-- Botão de Adicionar ao Carrinho -->
+                        @if($mostrarBotaoAddCarrinho)
+                            <button wire:click="adicionarAoCarrinho({{ $livro->codl }})" class="btn btn-primary mt-3">
+                                Adicionar ao Carrinho
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>

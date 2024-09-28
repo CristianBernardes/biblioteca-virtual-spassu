@@ -16,6 +16,7 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{url('assets/css/welcome.css')}}">
+    <link rel="stylesheet" href="{{url('assets/css/iziToast/iziToast.min.css')}}" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     @livewireStyles
 </head>
 <body class="font-sans antialiased bg-light text-dark">
@@ -67,8 +68,25 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-
+        crossorigin="anonymous">
+</script>
+<script src="{{url('assets/js/iziToast/iziToast.min.js')}}" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
 @livewireScripts
+<script>
+    function exibirIziToast(notificacao) {
+
+        iziToast.show({
+            title: notificacao.title,
+            message: notificacao.message,
+            color: notificacao.color,
+            position: 'center'
+        });
+    }
+
+    Livewire.on('mostrarIziToast', function (notificacao) {
+        exibirIziToast(notificacao);
+    });
+</script>
 </body>
 </html>

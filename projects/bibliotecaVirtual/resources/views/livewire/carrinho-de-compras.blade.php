@@ -70,10 +70,24 @@
             </div>
 
             <div class="col-md-6 text-end">
-                <button wire:click="comprar" class="btn btn-success">
+                <button onclick="executarCompra()" class="btn btn-success">
                     Comprar
                 </button>
             </div>
         </div>
     @endif
 </div>
+<script>
+    function executarCompra(){
+        iziToast.show({
+            title: 'Sucesso',
+            message: 'Compra realizada com sucesso!',
+            color: 'green',
+            position: 'center'
+        });
+
+        setTimeout(function() {
+            @this.comprar()
+        }, 3000);
+    }
+</script>

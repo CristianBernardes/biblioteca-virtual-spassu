@@ -20,7 +20,7 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{ $assunto['descricao'] }}
                 <div>
-                    <button class="btn btn-sm btn-warning" wire:click="editarAssunto({{ $assunto['codas'] }}, '{{ $assunto['descricao'] }}')">Atualizar</button>
+                    <button class="btn btn-sm btn-warning" wire:click="editarAssunto({{ $assunto['codas'] }}, '{{ $assunto['descricao'] }}')">Editar</button>
                     <button class="btn btn-sm btn-danger" wire:click="deletarAssunto({{ $assunto['codas'] }})">Deletar</button>
                 </div>
             </li>

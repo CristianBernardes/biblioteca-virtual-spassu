@@ -11,7 +11,7 @@ class AutorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->name,
+            'nome' => $this->faker->unique()->name,
         ];
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('autor', function (Blueprint $table) {
             $table->integer('codau')->unsigned()->autoIncrement()->primary();
-            $table->string('nome', 40);
+            $table->string('nome', 40)->unique();
             $table->timestamps();
         });
     }

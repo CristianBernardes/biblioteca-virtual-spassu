@@ -27,7 +27,7 @@ else
     # Executa o npm install e o npm run build
     npm install
     npm run build
-    
+
     # Instalar dependências do Composer
     composer install || { echo "Falha ao instalar as dependências"; exit 1; }
     

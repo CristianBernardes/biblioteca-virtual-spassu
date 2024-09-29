@@ -27,3 +27,13 @@ function formatarData($data): string
 {
     return Carbon::parse($data)->format('d/m/Y \à\s H:i:s');
 }
+
+/**
+ * @param $fileName
+ * @return string
+ */
+function getPathToFile($fileName)
+{
+    return $fileName ? asset('storage/capas/' . $fileName) : null;
+}
+

@@ -26,7 +26,7 @@
             <div class="col mb-4">
                 <div class="card h-100 shadow-sm">
                     <img
-                        src="{{ $livro->capa ? asset($livro->caminho_imagem) : asset('assets/images/semcapa.png') }}"
+                        src="{{ $livro->capa ? getPathToFile($livro->capa->caminho_imagem) : asset('assets/images/semcapa.png') }}"
                         alt="Capa do Livro"
                         class="card-img-top"
                         style="max-width: 100%; height: auto; object-fit: contain;"

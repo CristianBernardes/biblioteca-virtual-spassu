@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('assunto', function (Blueprint $table) {
             $table->integer('codas')->unsigned()->autoIncrement()->primary(); // chave primária autoincrementada
-            $table->string('descricao', 20)->unique();;
+            $table->string('descricao', 20)->unique();
             $table->timestamps();
         });
     }

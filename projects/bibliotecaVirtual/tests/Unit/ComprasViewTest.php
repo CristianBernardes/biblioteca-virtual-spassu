@@ -50,17 +50,17 @@ class ComprasViewTest extends TestCase
         // Consultar a view usando a model ComprasView
         $result = ComprasView::where('codigo_compra', $compra->codcompra)->first();
 
-        // Construir o JSON esperado com nome do livro e quantidade
+        // Construir o array esperado com nome do livro e quantidade
         $livrosEsperados = $livros->map(function ($livro) {
             return [
                 'nome_livro' => $livro->titulo,
                 'quantidade' => 1
             ];
-        })->toJson();
+        })->toArray();  // Usamos toArray() em vez de toJson()
 
-        // Validar se a view retorna os dados corretamente, usando json_decode para comparar os arrays
+        // Validar se a view retorna os dados corretamente
         $this->assertEquals('Usuário Teste', $result->usuario);
-        $this->assertEquals(json_decode($livrosEsperados, true), json_decode($result->livros_comprados, true));  // Comparar com os títulos gerados em formato JSON
+        $this->assertEquals($livrosEsperados, $result->livros_comprados);  // Comparar diretamente o array
         $this->assertEquals(300, $result->valor_total_livros);  // Valor total dos livros deve ser 300
         $this->assertEquals(10, $result->desconto);
         $this->assertEquals(270, $result->valor_total_pago);  // 300 - 10% de desconto

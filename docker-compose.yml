@@ -1,36 +1,39 @@
 services:
-  # Images Project
+  # Serviço da aplicação web chamada "biblioteca"
   biblioteca:
-    container_name: biblioteca_virtual
+    container_name: biblioteca_virtual # Define o nome do container como "biblioteca_virtual"
     build:
-      dockerfile: ops/Dockerfile
-    restart: unless-stopped
+      dockerfile: ops/Dockerfile # Especifica o caminho do Dockerfile para construir a imagem
+    restart: unless-stopped # Reinicia o container automaticamente, a menos que ele seja parado manualmente
     ports:
-      - "8021:8021"
-    working_dir: /var/www/html/bibliotecaVirtual
+      - "8021:8021" # Mapeia a porta 8021 do host para a porta 8021 do container
+    working_dir: /var/www/html/bibliotecaVirtual # Define o diretório de trabalho dentro do container
     volumes:
-      - ./projects/bibliotecaVirtual:/var/www/html/bibliotecaVirtual
+      - ./projects/bibliotecaVirtual:/var/www/html/bibliotecaVirtual # Mapeia o diretório local "./projects/bibliotecaVirtual" para o diretório de trabalho no container
     networks:
-      - biblioteca
+      - biblioteca # Conecta o container à rede chamada "biblioteca"
+    depends_on:
+      - mysql
 
-  # db mysql
+  # Serviço do banco de dados MySQL
   mysql:
-    container_name: biblioteca-mysql
-    image: mysql:8.0.32
-    restart: unless-stopped
+    container_name: biblioteca-mysql # Define o nome do container como "biblioteca-mysql"
+    image: mysql:8.0.32 # Utiliza a imagem MySQL versão 8.0.32
+    restart: unless-stopped # Reinicia o container automaticamente, a menos que seja parado manualmente
     environment:
-      MYSQL_DATABASE: biblioteca
-      MYSQL_ROOT_PASSWORD: biblioteca
-      MYSQL_PASSWORD: biblioteca
-      MYSQL_USER: biblioteca
+      MYSQL_ROOT_PASSWORD: biblioteca # Define a senha do usuário root do MySQL como "biblioteca"
+      MYSQL_PASSWORD: biblioteca # Define a senha do usuário "biblioteca"
+      MYSQL_USER: biblioteca # Define o nome de usuário como "biblioteca"
     volumes:
-      - ./.docker/mysql/dbdata:/var/lib/mysql
-    command: --default-authentication-plugin=mysql_native_password --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION" --skip-ssl
+      - ./.docker/mysql/dbdata:/var/lib/mysql # Mapeia o diretório local ".docker/mysql/dbdata" para o diretório de dados do MySQL no container
+      - ./confs:/docker-entrypoint-initdb.d # Mapeia o diretório local "./confs" para o diretório onde scripts de inicialização serão executados ao iniciar o MySQL
+    command: --default-authentication-plugin=mysql_native_password --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION" --skip-ssl # Configurações adicionais para o MySQL, incluindo modo de autenticação e configuração de SQL modes
     ports:
-      - "3368:3306"
+      - "3368:3306" # Mapeia a porta 3368 do host para a porta 3306 do container (porta padrão do MySQL)
     networks:
-      - biblioteca
+      - biblioteca # Conecta o container à rede chamada "biblioteca"
 
+# Definição da rede "biblioteca"
 networks:
   biblioteca:
-    driver: bridge
+    driver: bridge # Define o tipo de rede como "bridge" (padrão para a maioria dos projetos Docker)

@@ -9,8 +9,6 @@ ARG uid=1000
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-    nodejs \
-    npm \
     libzip-dev \
     zip \
     unzip \
@@ -19,7 +17,10 @@ RUN apk update && \
     freetype-dev \
     icu-dev \
     g++ \
-    lame && \
+    lame \
+    netcat-openbsd \
+    nodejs \
+    npm && \ 
     rm -rf /var/cache/apk/*
 
 # Instale as extensões PHP necessárias
@@ -65,6 +66,10 @@ COPY /../../../../confs/init_backend.sh /usr/local/bin/init_backend.sh
 # Torna o script executável
 RUN chmod +x /usr/local/bin/init_backend.sh
 
+# Instala o Node.js e npm globalmente
+RUN npm install -g npm@latest
+
+# Alterar para o usuário especificado
 USER $user
 
 # Define o comando principal do contêiner para executar o script de inicialização

@@ -6,7 +6,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('carrinho', function (){
+        return view('carrinho');
+    })->name('carrinho');
 });
+
 
 Route::get('/export-relatorio', function () {
     $timestamp = now()->format('Ymd_His');  // Formato: AnoMesDia_HoraMinutoSegundo

@@ -13,7 +13,7 @@
         <!-- Exibir o link para o carrinho se houver itens no carrinho -->
         @if($itensCarrinho > 0)
             <div class="col-md-2 text-end">
-                <a href="" class="btn btn-success">
+                <a href="{{route('carrinho')}}" class="btn btn-success">
                     Ir para o Carrinho ({{ $itensCarrinho }})
                 </a>
             </div>

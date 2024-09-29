@@ -16,7 +16,8 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{url('assets/css/welcome.css')}}">
-    <link rel="stylesheet" href="{{url('assets/css/iziToast/iziToast.min.css')}}" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="{{url('assets/css/iziToast/iziToast.min.css')}}" crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
     @livewireStyles
 </head>
 <body class="font-sans antialiased bg-light text-dark">
@@ -25,7 +26,9 @@
         <div class="container text-center">
             <header class="row align-items-center py-5">
                 <div class="col-12 col-lg-4 text-center">
-                    <img src="{{url('assets/images/spassu_logo.png')}}" class="img-fluid">
+                    <a href="/">
+                        <img src="{{url('assets/images/spassu_logo.png')}}" class="img-fluid">
+                    </a>
                 </div>
                 <div class="col-12 col-lg-8 text-end">
                     @if (Route::has('login'))

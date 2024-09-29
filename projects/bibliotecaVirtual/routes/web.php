@@ -22,9 +22,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::get('compras-view', function () {
-    return (new \App\Services\ComprasViewService())->getComprasView();
-});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

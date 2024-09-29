@@ -15,6 +15,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{url('assets/css/iziToast/iziToast.min.css')}}" crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -76,5 +79,23 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{url('assets/js/iziToast/iziToast.min.js')}}" crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    @livewireScripts
+    <script>
+        function exibirIziToast(notificacao) {
+
+            iziToast.show({
+                title: notificacao.title,
+                message: notificacao.message,
+                color: notificacao.color,
+                position: 'center'
+            });
+        }
+
+        Livewire.on('mostrarIziToast', function (notificacao) {
+            exibirIziToast(notificacao);
+        });
+    </script>
 </body>
 </html>

@@ -45,7 +45,7 @@ Este projeto foi desenvolvido utilizando Laravel e Livewire, seguindo boas prát
 - Utilizamos TDD em alguns pontos do projeto, incluindo testes para as procedures e relatórios.
 
 ## Relatório
-O relatório exibe os livros agrupados por autor e assunto, gerado através de uma view no banco de dados.
+O relatório exibe os livros agrupados por autor e assunto, gerado através de uma view no banco de dados em um arquivo Excel.
 
 ## Conclusão
 Este projeto entrega além do que foi solicitado, integrando funcionalidades de vendas e relatórios dinâmicos, além de ser totalmente configurável via Docker para fácil implantação.

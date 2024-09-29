@@ -161,7 +161,6 @@ class CarrinhoDeCompras extends Component
 
         session()->forget('carrinho');
         session()->forget('desconto');
-        $this->enviarNotificacao('Sucesso', 'Compra realizada com sucesso!');
 
         return redirect()->route('welcome');
     }

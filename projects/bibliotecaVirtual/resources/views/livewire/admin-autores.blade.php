@@ -21,7 +21,7 @@
                 {{ $autor['nome'] }}
                 <div>
                     <button class="btn btn-sm btn-warning"
-                            wire:click="editarAutor({{ $autor['codau'] }}, '{{ $autor['nome'] }}')">Atualizar
+                            wire:click="editarAutor({{ $autor['codau'] }}, '{{ $autor['nome'] }}')">Editar
                     </button>
                     <button class="btn btn-sm btn-danger" wire:click="deletarAutor({{ $autor['codau'] }})">Deletar
                     </button>

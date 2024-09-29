@@ -24,6 +24,10 @@ else
     # Aguardar MySQL estar pronto
     wait_for_mysql
 
+    # Executa o npm install e o npm run build
+    npm install
+    npm run build
+
     # Instalar dependências do Composer
     composer install || { echo "Falha ao instalar as dependências"; exit 1; }
     

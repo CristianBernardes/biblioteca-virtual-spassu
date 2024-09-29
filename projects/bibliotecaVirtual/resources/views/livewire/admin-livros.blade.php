@@ -90,7 +90,11 @@
     </form>
 
     <!-- Lista de livros cadastrados -->
-    <h5 class="mt-5">Livros Cadastrados</h5>
+    <h5 class="mt-5">
+        Livros Cadastrados
+        <br>
+        <a href="/export-relatorio">Relatório de livros cadastrados</a>
+    </h5>
     <ul class="list-group">
         @forelse ($livros as $livro)
             <li class="list-group-item">

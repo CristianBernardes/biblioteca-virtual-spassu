@@ -11,9 +11,6 @@
         <button type="submit" class="btn btn-primary">
             {{ $assuntoId ? 'Atualizar Assunto' : 'Cadastrar Assunto' }}
         </button>
-        @if($assuntoId)
-            <button type="button" class="btn btn-secondary" wire:click="reset('descricao', 'assuntoId')">Cancelar</button>
-        @endif
     </form>
 
     <!-- Lista de assuntos cadastrados -->

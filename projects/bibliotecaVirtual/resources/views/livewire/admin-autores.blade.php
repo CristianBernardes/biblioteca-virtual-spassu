@@ -11,9 +11,6 @@
         <button type="submit" class="btn btn-primary">
             {{ $autorId ? 'Atualizar Autor' : 'Cadastrar Autor' }}
         </button>
-        @if($autorId)
-            <button type="button" class="btn btn-secondary" wire:click="reset('nome', 'autorId')">Cancelar</button>
-        @endif
     </form>
 
     <!-- Lista de autores cadastrados -->

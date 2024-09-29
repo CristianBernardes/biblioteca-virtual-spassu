@@ -30,7 +30,7 @@ Este projeto foi desenvolvido utilizando Laravel e Livewire, seguindo boas prát
     docker-compose up -d
     ```
 4. O projeto será inicializado automaticamente dentro do container Docker e o script init_backend.sh será executado. Ele faz as seguintes verificações e operações:
-    - Verifica se o arquivo `.env existe`, se não existir, ele será criado a partir do `.env.example`.
+    - Verifica se o arquivo `.env` existe, se não existir, ele será criado a partir do `.env.example`.
     - Aguarda o MySQL estar disponível antes de rodar as migrações e seeds.
     - Instala as dependências do Composer (caso não estejam instaladas).
     - Executa as migrations e seeds para preparar o banco de dados.

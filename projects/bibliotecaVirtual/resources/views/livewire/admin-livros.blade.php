@@ -29,7 +29,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="ano_publicacao" class="form-label">Ano de Publicação</label>
-                <input type="text" class="form-control @error('ano_publicacao') is-invalid @enderror"
+                <input type="number" class="form-control @error('ano_publicacao') is-invalid @enderror"
                        id="ano_publicacao"
                        wire:model="ano_publicacao">
                 @error('ano_publicacao') <span class="text-danger">{{ $message }}</span> @enderror

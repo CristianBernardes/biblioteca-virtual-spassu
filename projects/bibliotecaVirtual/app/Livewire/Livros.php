@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use App\Services\LivroService;
 use App\Traits\IziToastTrait;
 use Illuminate\View\View;
@@ -35,7 +36,7 @@ class Livros extends Component
     public $itensCarrinho = 0;
 
     /**
-     * @var null|\App\Models\User Usuário autenticado
+     * @var null|User Usuário autenticado
      */
     private $user;
 

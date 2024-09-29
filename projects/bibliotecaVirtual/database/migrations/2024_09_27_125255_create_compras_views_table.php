@@ -14,6 +14,7 @@ return new class extends Migration {
         DB::statement("
             CREATE VIEW compras_view AS
                 SELECT
+                    users.id AS id_usuario,
                     users.name AS usuario,
                     compras.codcompra AS codigo_compra,
                     JSON_ARRAYAGG(

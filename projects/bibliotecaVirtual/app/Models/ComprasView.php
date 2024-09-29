@@ -32,4 +32,8 @@ class ComprasView extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $casts = [
+        'livros_comprados' => 'array'
+    ];
 }

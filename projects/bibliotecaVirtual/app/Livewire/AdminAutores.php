@@ -102,6 +102,7 @@ class AdminAutores extends Component
 
             // Reseta os campos do formulário
             $this->reset(['nome', 'autorId']);
+            $this->dispatch('atualizarComponente');
             $this->carregarAutores();
         } catch (\Exception $e) {
             $this->enviarNotificacao('Erro', $e->getMessage(), 'red');
@@ -133,6 +134,7 @@ class AdminAutores extends Component
             $this->autorService->deleteAutor($id);
             $this->enviarNotificacao('Sucesso', 'Autor deletado com sucesso!', 'green');
             $this->carregarAutores();
+            $this->dispatch('atualizarComponente');
         } catch (\Exception $e) {
             $this->enviarNotificacao('Erro', $e->getMessage(), 'red');
         }

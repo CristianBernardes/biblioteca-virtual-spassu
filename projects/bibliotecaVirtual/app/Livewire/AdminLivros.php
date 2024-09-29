@@ -7,6 +7,7 @@ use App\Services\AutorService;
 use App\Services\AssuntosService;
 use App\Traits\IziToastTrait;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -207,5 +208,10 @@ class AdminLivros extends Component
             'assuntosDisponiveis' => $this->assuntosService->getAssuntos(),
             'livros' => $this->livros,
         ]);
+    }
+
+    #[On('atualizarComponente')]
+    public function refresh()
+    {
     }
 }

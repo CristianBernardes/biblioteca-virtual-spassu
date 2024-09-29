@@ -103,6 +103,7 @@ class AdminAssuntos extends Component
             // Reseta os campos do formulário
             $this->reset(['descricao', 'assuntoId']);
             $this->carregarAssuntos();
+            $this->dispatch('atualizarComponente');
         } catch (\Exception $e) {
             $this->enviarNotificacao('Erro', $e->getMessage(), 'red');
         }
@@ -133,6 +134,7 @@ class AdminAssuntos extends Component
             $this->assuntosService->deleteAssunto($id);
             $this->enviarNotificacao('Sucesso', 'Assunto deletado com sucesso!', 'green');
             $this->carregarAssuntos();
+            $this->dispatch('atualizarComponente');
         } catch (\Exception $e) {
             $this->enviarNotificacao('Erro', $e->getMessage(), 'red');
         }

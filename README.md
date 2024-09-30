@@ -41,6 +41,17 @@ Este projeto foi desenvolvido utilizando Laravel e Livewire, seguindo boas prát
 ## Acessar o Servidor
 - http://localhost:8021
 
+## Acessar área administrativa
+- http://localhost:8021/login
+    ```bash
+    usuário admin: admin@example.com
+    senha: A1234567
+    ```
+  ```bash
+    usuário comum: user@example.com
+    senha: B9876543
+    ```
+
 ## Testes
 - Utilizamos TDD em alguns pontos do projeto, incluindo testes para as procedures e relatórios.
 

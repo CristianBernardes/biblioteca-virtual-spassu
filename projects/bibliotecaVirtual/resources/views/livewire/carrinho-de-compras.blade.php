@@ -11,7 +11,7 @@
         <div class="row mb-4">
             <div class="col-md-2">
                 <img
-                    src="{{ $livro->capa ? asset($livro->caminho_imagem) : asset('assets/images/semcapa.png') }}"
+                    src="{{ $livro->capa ? getPathToFile($livro->capa->caminho_imagem) : asset('assets/images/semcapa.png') }}"
                     alt="Capa do Livro"
                     class="img-fluid"
                     style="max-width: 100%; height: auto; object-fit: contain;"

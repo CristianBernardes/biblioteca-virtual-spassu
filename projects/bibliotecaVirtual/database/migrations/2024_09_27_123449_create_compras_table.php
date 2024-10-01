@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('transacao_sucesso')->default(false);
             $table->decimal('valor_compra', 10, 2);
+            $table->decimal('valor_pago', 10, 2);
             $table->integer('desconto')->default(0);
             $table->timestamps();
         });

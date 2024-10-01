@@ -19,6 +19,7 @@ return new class extends Migration {
                 OUT p_compra_id INT
             )
             BEGIN
+                DECLARE v_total_sem_desconto DECIMAL(10,2) DEFAULT 0;
                 DECLARE v_total DECIMAL(10,2) DEFAULT 0;
                 DECLARE v_livro_id INT;
                 DECLARE v_quantidade INT;
@@ -40,11 +41,12 @@ return new class extends Migration {
                 END WHILE;
 
                 -- Aplicar o desconto ao valor total
+                SET v_total_sem_desconto = v_total;
                 SET v_total = v_total - (v_total * p_desconto / 100);
 
                 -- Criar a compra com o valor já calculado
-                INSERT INTO compras(user_id, valor_compra, desconto, transacao_sucesso, created_at, updated_at)
-                VALUES (p_user_id, v_total, p_desconto, 1, NOW(), NOW());
+                INSERT INTO compras(user_id, valor_compra, valor_pago, desconto, transacao_sucesso, created_at, updated_at)
+                VALUES (p_user_id, v_total_sem_desconto, v_total, p_desconto, 1, NOW(), NOW());
 
                 -- Obtém o ID da compra recém inserida
                 SET p_compra_id = LAST_INSERT_ID();

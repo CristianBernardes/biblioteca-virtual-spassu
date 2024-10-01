@@ -91,7 +91,7 @@ class ProcessarCompraTest extends TestCase
         // Verificar se o valor da compra foi calculado corretamente
         $this->assertDatabaseHas('compras', [
             'codcompra' => $compraId,
-            'valor_compra' => $valorComDesconto,
+            'valor_pago' => $valorComDesconto,
             'desconto' => $desconto,
         ]);
     }

@@ -30,11 +30,14 @@ class ComprasViewTest extends TestCase
         // Calcular o valor total dos livros
         $valorTotalLivros = $livros->sum('valor'); // 100 * 3 = 300
 
+        $desconto = 10;
+
         // Criar uma compra com o valor calculado
         $compra = Compra::factory()->create([
             'user_id' => $user->id,
             'valor_compra' => $valorTotalLivros,
-            'desconto' => 10, // Desconto de 10%
+            'valor_pago' => $valorTotalLivros - (($valorTotalLivros * $desconto) / 100),
+            'desconto' => $desconto,
             'transacao_sucesso' => true,
         ]);
 
@@ -83,11 +86,14 @@ class ComprasViewTest extends TestCase
         // Calcular o valor total dos livros
         $valorTotalLivros = $livros->sum('valor'); // 50 + 75 + 125 = 250
 
+        $desconto = 15;
+
         // Criar uma compra com o valor calculado e desconto de 15%
         $compra = Compra::factory()->create([
             'user_id' => $user->id,
             'valor_compra' => $valorTotalLivros,
-            'desconto' => 15,  // Desconto de 15%
+            'valor_pago' => $valorTotalLivros - (($valorTotalLivros * $desconto) / 100),
+            'desconto' => $desconto,
             'transacao_sucesso' => true,
         ]);
 
@@ -107,7 +113,7 @@ class ComprasViewTest extends TestCase
         $valorTotalPago = $valorTotalLivros - ($valorTotalLivros * 0.15);  // 250 - 15%
 
         // Validar os cálculos de valor total e desconto
-        $this->assertEquals(250, $result->valor_total_livros);
+        $this->assertEquals($valorTotalLivros, $result->valor_total_livros);
         $this->assertEquals(15, $result->desconto);
         $this->assertEquals($valorTotalPago, $result->valor_total_pago);  // 250 - 15%
         $this->assertEquals(1, $result->sucesso);  // Transação bem-sucedida

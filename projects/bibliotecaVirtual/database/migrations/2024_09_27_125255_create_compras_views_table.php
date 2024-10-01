@@ -25,7 +25,7 @@ return new class extends Migration {
                     ) AS livros_comprados,
                     compras.valor_compra AS valor_total_livros,
                     compras.desconto AS desconto,
-                    (compras.valor_compra - (compras.valor_compra * compras.desconto / 100)) AS valor_total_pago,
+                    compras.valor_pago AS valor_total_pago,
                     compras.transacao_sucesso AS sucesso,
                     compras.created_at AS data_compra
                 FROM

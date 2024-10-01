@@ -20,9 +20,11 @@ class CompraTest extends TestCase
         $user = User::factory()->create();
 
         // Criar uma compra
-        $compra = Compra::factory()->create([
+        Compra::factory()->create([
             'user_id' => $user->id,
-            'desconto' => 10, // Exemplo de desconto
+            'valor_compra' => 100,
+            'valor_pago' => 10,
+            'desconto' => 100 * 10 / 100,
             'transacao_sucesso' => true,
         ]);
 

@@ -76,7 +76,12 @@ class AssuntosService
     public function deleteAssunto(int $codas)
     {
         try {
-            $assunto = $this->model->where('codas', $codas)->firstOrFail();
+            $assunto = $this->model->with('livros')->where('codas', $codas)->firstOrFail();
+
+            if (count($assunto->livros) > 0) {
+                throw new \Exception('Você não pode excluir um assunto que esteja vinculado a um livro.');
+            }
+
             return $assunto->delete();
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());

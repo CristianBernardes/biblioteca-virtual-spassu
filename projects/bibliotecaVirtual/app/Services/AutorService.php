@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Autor;
 use Illuminate\Database\Eloquent\Collection;
+use mysql_xdevapi\Exception;
 
 /**
  * Class AutorService
@@ -89,7 +90,12 @@ class AutorService
     public function deleteAutor(int $codau)
     {
         try {
-            $autor = $this->model->where('codau', $codau)->firstOrFail();
+            $autor = $this->model->with('livros')->where('codau', $codau)->firstOrFail();
+
+            if (count($autor->livros) > 0) {
+                throw new \Exception('Você não pode excluir um autor que esteja vinculado a um livro.');
+            }
+
             return $autor->delete();
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
